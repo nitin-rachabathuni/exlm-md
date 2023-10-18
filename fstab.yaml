@@ -1,2 +1,5 @@
 mountpoints:
-  /: https://51837-exlmconverter-dev.adobeioruntime.net/api/v1/web/main/convert
+  /:
+    url: https://51837-dravuri-dev.adobeioruntime.net/api/v1/web/main/convert
+    type: markup
+    suffix: '.md'

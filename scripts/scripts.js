@@ -30,6 +30,28 @@ function buildHeroBlock(main) {
   }
 }
 
+function buildLayout(main) {
+  if (main) {
+    const leftRail = main.querySelector('#col-left-rail');
+    const rightRail = main.querySelector('#col-right-rail');
+    const base = main.querySelector('#col-base');
+    if (main.id === 'document-container' && leftRail && rightRail && base && main.children.length === 3) {
+      // condition satisfied
+      main.style.display = 'grid';
+      main.style.gridTemplateColumns = `20% 1fr 20%`;
+      main.style.width = '100%';
+      const preCodeElements = main.querySelectorAll('pre');
+      const imgElements = main.querySelectorAll('img');
+      Array.from(preCodeElements).forEach((preCodeElement) => {
+        preCodeElement.style.whiteSpace = 'pre-wrap';
+      });
+      Array.from(imgElements).forEach((imgElement) => {
+        imgElement.style.maxWidth = '100%';
+      });
+    }
+  }
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -49,6 +71,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    buildLayout(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
